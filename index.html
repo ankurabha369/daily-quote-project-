@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Quote</title>
+    <link rel="icon" type="image/x-icon" href="android-chrome-192x192.png">
+    <style>
+        *{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body{
+            background-image:url('pattern.jpg') ;
+            background-size:auto;
+        }
+        .maincontainer{
+            margin-top: 6rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            text-align: center;
+            background-color:#b2dbbf ;
+            border-radius: 1rem;
+            padding: 1rem;
+            width:  21rem;
+            min-height: 21rem;
+            box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.671);
+
+        }
+        h2{
+            line-height: 2rem;
+            color:#247b80;
+            
+        }
+        #btn{
+            margin-top: 1rem;
+            border-radius: .3rem;
+            border: none;
+            padding: .5rem;
+            cursor: pointer;
+            color:#ff1654a8;
+            font-weight: 900;
+            background-color: #f3ffbd;
+            box-shadow: 2px 1px 5px rgba(141, 135, 135, 0.973);
+
+        }
+        #btnbox{
+            display: flex;
+            justify-content: flex-end;
+            
+        }
+        .main{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height:12rem;
+            background-color:#f3ffbd ;
+            border-radius: .5rem;
+            padding: 1px;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #247b80;
+            padding:10px;
+        }
+        
+        .msg{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #author{
+            text-align: right;
+            font-style: italic;
+            color: #ff1654;
+            font-size: .8rem;
+            margin-top: .5rem;
+        }
+        #iphone{
+            display: flex;
+            gap: 5px;
+            height: .15rem;
+        }
+        .dots{
+            background-color: #f3ffbd;
+            border-radius: 50%;
+            height: .7rem;
+            width: .7rem;
+        }
+        #one{background-color:#ff5f57;}
+        #two{background-color: #ffbc2d;}
+        #three{background-color: #27c940;}
+
+        .profile{
+            height: 5rem;
+            width:5rem;
+            border-radius: 50%;
+            background-image: url("As I wanted ii.png");
+            background-size: cover;
+            border: 5px solid #b2dbbf;
+        }
+        .me{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 3rem;
+        }
+        .only{
+            display: flex;
+            justify-content: center;
+        }
+        p{
+            color:#247b80;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="maincontainer">
+        <div class="container">
+            <div id="iphone">
+                <div id="one" class="dots"></div>
+                <div id="two" class="dots"></div>
+                <div id="three" class="dots"></div>    
+            </div>
+            <h2>Daily Quote</h2>
+            
+            <div class="main">
+                <div class="inner">
+                    <div class="msg">This is the Message</div>
+                    <div id="author">The author</div>    
+                </div>
+            </div>
+    
+            <div id="btnbox">
+                <button id="btn">Genereate</button>
+            </div>
+            
+        </div>
+    </div>
+    <div class="me">
+        <div class="inside">
+            <div class="only">
+                <div class="profile"></div>
+            </div>
+            <p>Created and Designed by <i><b>Ankur Rabha</b></i></p>    
+        </div>
+    </div>
+
+ 
+    <script>
+        const url = 'https://api.quotable.io/quotes/random'
+
+        const getquote = async() => {
+            console.log('Getting a quote....');
+            let response = await fetch(url);
+            let data = await response.json();
+            quote.innerText = data[0].content;
+            writer.innerText =  "-- " + data[0].author + " --";
+
+        }
+
+        let quote = document.querySelector('.msg');
+        let writer = document.querySelector('#author');
+        let btn = document.querySelector('#btn');
+        btn.addEventListener("click", getquote);
+
+        
+
+    </script>
+</body>
+</html>
